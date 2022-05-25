@@ -4,7 +4,7 @@ const time_el = document.querySelector('.watch .time');
 const startStop_btn = document.getElementById('startStop');
 const reset_btn = document.getElementById('reset');
 
-[milliseconds,seconds,minutes,hours] = [0,0,0,0];
+let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
 let interval = null;
 let timestatus = "stopped";
 
@@ -15,6 +15,20 @@ reset_btn.addEventListener('click', reset);
 //Update timer
 function timer() {
     milliseconds+=10;
+
+    //Timer logic
+    if (milliseconds >= 1000) {
+        milliseconds = 0;
+        seconds++;
+        if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes >= 60) {
+                minutes = 0;
+                hours++;
+            }
+        }
+    }
     
     //Display only 2 digits for milliseconds
     let time = new Date(milliseconds);
@@ -30,20 +44,6 @@ function timer() {
     let mins = minutes < 10 ? "0" + minutes : minutes;
     let secs = seconds < 10 ? "0" + seconds : seconds;
     let millisecs = dropZero('' + (time.getMilliseconds() / 10 | 0));
-
-    //Time logic
-    if (milliseconds >= 1000) {
-        milliseconds = 0;
-        seconds++;
-        if (seconds >= 60) {
-            seconds = 0;
-            minutes++;
-            if (minutes >= 60) {
-                minutes = 0;
-                hours++;
-            }
-        }
-    }
 
     //Display time
     time_el.innerText = `${hrs} : ${mins} : ${secs}.${millisecs}`;
