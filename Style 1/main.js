@@ -5,7 +5,7 @@ const start_btn = document.getElementById('start');
 const stop_btn = document.getElementById('stop');
 const reset_btn = document.getElementById('reset');
 
-let seconds = 360;
+let seconds = 0;
 let interval = null;
 
 //Event listeners
