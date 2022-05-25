@@ -14,17 +14,24 @@ reset_btn.addEventListener('click', reset);
 
 //Update timer
 function timer() {
-    const ms = (time) => {
+    milliseconds+=10;
+    
+    //Display only 2 digits for milliseconds
+    let time = new Date(milliseconds);
+    const dropZero = (time) => {
         while (time.length < 2) { 
           time = '0' + time; 
         } 
         return time;
     }
 
-    let time = new Date(milliseconds);
+    //Format timer
+    let hrs = hours < 10 ? "0" + hours : hours;
+    let mins = minutes < 10 ? "0" + minutes : minutes;
+    let secs = seconds < 10 ? "0" + seconds : seconds;
+    let millisecs = dropZero('' + (time.getMilliseconds() / 10 | 0));
 
-    milliseconds+=10;
-
+    //Time logic
     if (milliseconds >= 1000) {
         milliseconds = 0;
         seconds++;
@@ -38,16 +45,11 @@ function timer() {
         }
     }
 
-    let hrs = hours < 10 ? "0" + hours : hours;
-    let mins = minutes < 10 ? "0" + minutes : minutes;
-    let secs = seconds < 10 ? "0" + seconds : seconds;
-    //Display only 2 digits for milliseconds
-    let millisecs = ms('' + (time.getMilliseconds() / 10 | 0));
-
+    //Display time
     time_el.innerText = `${hrs} : ${mins} : ${secs}.${millisecs}`;
 }
 
-function ms(time) {
+function dropZero(time) {
     return time < 10 ? '0' + time : '' + time;
 }
 
@@ -72,6 +74,6 @@ function reset() {
     timestatus = "stopped";
     clearInterval(interval);
     interval = null;
-    seconds = 0;
+    milliseconds = seconds = minutes = hours = 0;
     time_el.innerText = '00 : 00 : 00.00';
 }
