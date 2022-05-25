@@ -1,0 +1,72 @@
+:root {
+    --primary: #0e969b;
+    --dark: #2c2c2c;
+    --darker: #1f1f1f;
+    --light: #f1f1f1;
+    
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Roboto mono',monospace;
+}
+
+body {
+    background: var(--darker);
+    color: var(--light);
+}
+
+.watch {
+    text-align: center;
+    background: var(--dark);
+    width: 100%;
+    max-width: 50%;
+    margin: 4rem auto;
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+.time {
+    font-size: 5vw;
+    margin-bottom: 1rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+}
+
+.controls button {
+    /* Remove all default styling */
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+
+    /* New styling */
+    color: var(--light);
+    background: var(--primary);
+    margin: 0 .5rem;
+    padding: .5rem 1rem;
+    border-radius: .2rem;
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+button:active {
+    background-color: var(--darker);
+}
+
+@media screen and (max-width: 600px) {
+    .watch {
+        max-width: 80%;
+    }
+    .controls button {
+        font-size: 1rem;
+        margin: 5px;
+        padding: 5px 15px;
+    }
+}
