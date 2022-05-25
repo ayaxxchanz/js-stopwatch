@@ -3,7 +3,6 @@
     --dark: #2c2c2c;
     --darker: #1f1f1f;
     --light: #f1f1f1;
-    
 }
 
 * {
@@ -54,12 +53,6 @@ body {
     border-radius: .2rem;
     font-size: 1.3rem;
     font-weight: 300;
-
-    transition: .2s;
-}
-
-button:hover {
-    opacity: 0.7;
 }
 
 button:active {
